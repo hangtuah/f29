@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2021 at 05:13 PM
+-- Generation Time: Nov 23, 2021 at 07:10 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.22
 
@@ -20,6 +20,50 @@ SET time_zone = "+00:00";
 --
 -- Database: `tempahan`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking`
+--
+
+CREATE TABLE `booking` (
+  `id` int(11) NOT NULL,
+  `pengguna_id` int(11) NOT NULL,
+  `kenderaan_id` int(11) NOT NULL,
+  `tarikh` varchar(20) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`id`, `pengguna_id`, `kenderaan_id`, `tarikh`, `status`) VALUES
+(1, 3, 2, '23 DIS 2021', 1),
+(3, 4, 3, '23 DIS 2021', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kenderaan`
+--
+
+CREATE TABLE `kenderaan` (
+  `id` int(11) NOT NULL,
+  `model` varchar(20) NOT NULL,
+  `pengeluar` varchar(12) NOT NULL,
+  `plat` varchar(20) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kenderaan`
+--
+
+INSERT INTO `kenderaan` (`id`, `model`, `pengeluar`, `plat`, `status`) VALUES
+(2, 'X70', 'PROTON', 'JUV1', 1),
+(3, 'CITY 1.6 2017', 'HONDA', 'UTM1', 1);
 
 -- --------------------------------------------------------
 
@@ -48,6 +92,18 @@ INSERT INTO `pengguna` (`id`, `nama`, `email`, `telefon`, `status`) VALUES
 --
 
 --
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kenderaan`
+--
+ALTER TABLE `kenderaan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pengguna`
 --
 ALTER TABLE `pengguna`
@@ -56,6 +112,18 @@ ALTER TABLE `pengguna`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `kenderaan`
+--
+ALTER TABLE `kenderaan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pengguna`

@@ -2,7 +2,7 @@
 include 'dbase.php';
 
 if($_GET && $_GET['action'] == 'padam'){
-    $query = "delete from pengguna where id = ".$_GET['id'];
+    $query = "delete from kenderaan where id = ".$_GET['id'];
 
     if($query){
         $link->query($query);
@@ -10,8 +10,8 @@ if($_GET && $_GET['action'] == 'padam'){
 }
 
 
-//List pengguna
-$query = "select * from pengguna";
+//List kenderaan
+$query = "select * from kenderaan";
 $data = array();
 
 $result = $link->query($query);
@@ -30,16 +30,16 @@ while ($row = $result->fetch_assoc()) {
     <title>Sistem Tempahan Kenderaan</title>
 </head>
 <body>
-<?php include 'menu.php'; ?>
+    <?php include 'menu.php'; ?>
     <br>
-    <a href="formPengguna.php"><button>Tambah Pengguna</button></a>
+    <a href="formKenderaan.php"><button>Tambah Kenderaan</button></a>
     <br>
     <table border="1">
         <tr>
             <td>Bil.</td>
-            <td>Nama</td>
-            <td>Email</td>
-            <td>Telefon</td>
+            <td>Model</td>
+            <td>Pengeluar</td>
+            <td>Plat</td>
             <td>Ubah</td>
             <td>Padam</td>
         </tr>
@@ -48,11 +48,11 @@ while ($row = $result->fetch_assoc()) {
         foreach($data as $row){
             echo '<tr>';
             echo '<td>' .$i. '</td>';
-            echo '<td>' . $row['nama'] . '</td>';
-            echo '<td>' . $row['email'] . '</td>';
-            echo '<td>' . $row['telefon'] . '</td>';
-            echo '<td><a href="formPengguna.php?id='.$row['id'].'&action=ubah"><button>Ubah</button></a></td>';
-            echo '<td><a href="pengguna.php?id='.$row['id'].'&action=padam"><button>Padam</button></a></td>';
+            echo '<td>' . $row['model'] . '</td>';
+            echo '<td>' . $row['pengeluar'] . '</td>';
+            echo '<td>' . $row['plat'] . '</td>';
+            echo '<td><a href="formKenderaan.php?id='.$row['id'].'&action=ubah"><button>Ubah</button></a></td>';
+            echo '<td><a href="kenderaan.php?id='.$row['id'].'&action=padam"><button>Padam</button></a></td>';
             echo '</tr>';
             $i++;
         }

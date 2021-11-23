@@ -2,7 +2,7 @@
 include 'dbase.php';
 
 if($_GET && $_GET['action'] == 'padam'){
-    $query = "delete from pengguna where id = ".$_GET['id'];
+    $query = "delete from booking where id = ".$_GET['id'];
 
     if($query){
         $link->query($query);
@@ -10,15 +10,16 @@ if($_GET && $_GET['action'] == 'padam'){
 }
 
 
-//List pengguna
-$query = "select * from pengguna";
+//List booking
+$query = "select a.id, a.tarikh, b.nama, c.model, c.pengeluar, c.plat from booking a 
+            inner join pengguna b on b.id = a.pengguna_id 
+            inner join kenderaan c on c.id = a.kenderaan_id ";
 $data = array();
 
 $result = $link->query($query);
 while ($row = $result->fetch_assoc()) {
     $data[] = $row;
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -30,16 +31,15 @@ while ($row = $result->fetch_assoc()) {
     <title>Sistem Tempahan Kenderaan</title>
 </head>
 <body>
-<?php include 'menu.php'; ?>
+    <?php include 'menu.php'; ?>
     <br>
-    <a href="formPengguna.php"><button>Tambah Pengguna</button></a>
+    <a href="formBooking.php"><button>Tambah Tempahan</button></a>
     <br>
     <table border="1">
         <tr>
             <td>Bil.</td>
-            <td>Nama</td>
-            <td>Email</td>
-            <td>Telefon</td>
+            <td>Pengguna</td>
+            <td>Kenderaan </td>
             <td>Ubah</td>
             <td>Padam</td>
         </tr>
@@ -49,10 +49,9 @@ while ($row = $result->fetch_assoc()) {
             echo '<tr>';
             echo '<td>' .$i. '</td>';
             echo '<td>' . $row['nama'] . '</td>';
-            echo '<td>' . $row['email'] . '</td>';
-            echo '<td>' . $row['telefon'] . '</td>';
-            echo '<td><a href="formPengguna.php?id='.$row['id'].'&action=ubah"><button>Ubah</button></a></td>';
-            echo '<td><a href="pengguna.php?id='.$row['id'].'&action=padam"><button>Padam</button></a></td>';
+            echo '<td>' . $row['pengeluar'] . ' ' .  $row['model'] .' - '. $row['plat'] . '</td>';
+            echo '<td><a href="formBooking.php?id='.$row['id'].'&action=ubah"><button>Ubah</button></a></td>';
+            echo '<td><a href="booking.php?id='.$row['id'].'&action=padam"><button>Padam</button></a></td>';
             echo '</tr>';
             $i++;
         }

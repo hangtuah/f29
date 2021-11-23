@@ -46,12 +46,7 @@ $query = '';
     <title>Document</title>
 </head>
 <body>
-<ul>
-        <li><a href="index.php">Utama</a></li>
-        <li> <a href="pengguna.php">Pengguna</a></li>
-        <li>Kenderaan</li>
-        <li>Tempahan</li>
-    </ul>
+<?php include 'menu.php'; ?>
     <br>
     <h2>Tambah Pengguna</h2>
     <form action="formPengguna.php" method="post">
